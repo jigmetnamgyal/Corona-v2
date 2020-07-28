@@ -12,13 +12,13 @@ const options = {
         radius: 0,
       },
     },
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     tooltips: {
       mode: "index",
       intersect: false,
       callbacks: {
         label: function (tooltipItem, data) {
-          return numeral(tooltipItem.value).format("+0.0");
+          return numeral(tooltipItem.value).format("+0,0");
         },
       },
     },
@@ -27,7 +27,7 @@ const options = {
         {
           type: "time",
           time: {
-            parser: "MM/DDD/YY",
+            parser: "MM/DD/YY",
             tooltipFormat: "ll",
           },
         },
@@ -48,7 +48,7 @@ const options = {
     },
   };
 
-function LineGraph({ caseType = "cases" }) {
+function LineGraph({ caseType = "cases" }, ...props) {
 
   const [data, setData] = useState({});
 
@@ -74,17 +74,15 @@ function LineGraph({ caseType = "cases" }) {
       await fetch(proxyurl + "https://disease.sh/v3/covid-19/historical/all?lastdays=120")
         .then((response) => response.json())
         .then((data) => {
-          let chartData = buildChartData(data, "cases");
+          let chartData = buildChartData(data, caseType);
           setData(chartData);
         })
     };
     fetchHistoryData();
   }, [caseType]);
 
-  
-
   return (
-    <div>
+    <div className={props.className}>
       {data?.length > 0 && (
         <Line
           options={options}
@@ -101,6 +99,7 @@ function LineGraph({ caseType = "cases" }) {
       )}
     </div>
   );
+  
 }
 
 export default LineGraph;

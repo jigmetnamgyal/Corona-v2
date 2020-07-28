@@ -1,11 +1,12 @@
 import React from 'react'
 import {Card, CardContent, Typography} from "@material-ui/core";
-function InfoCard({title, cases, total}) {
+import './infocard.css';
+function InfoCard({title,isRed, cases,active, total, ...props}) {
     return (
-        <Card className="info">
+        <Card className={`info ${active && 'info--selected'} ${isRed && 'info--red'}`} onClick={props.onClick}>
             <CardContent>
                 <Typography className="info_title" color="textSecondary">{title}</Typography>
-                <h3 className="info_cases">{cases}</h3>
+                <h3 className={`info_cases ${!isRed && 'info--textColor'}` }>{cases}</h3>
                 <Typography className="info_total" color="textSecondary">{total}</Typography>
             </CardContent>
         </Card>
