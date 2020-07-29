@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(235, 235, 235);
 }
 
 
@@ -18,8 +19,49 @@ code {
   margin: 0;
   box-sizing: border-box;
 }
+.virus{
+  height: 200px;
+  width: 300px;
+}
+.virus__title{
+  color:white;
+  margin-bottom: 30px;
+}
+.virus__p{
+  color: white;
+  margin-bottom: 20px;
+}
+.virus__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.donate__btn{
+  border: rgb(241, 11, 61) 1px solid;
+  background-color: white;
+  padding: 20px;
+  width: 150px;
+  border-radius: 30px; 
+  font-weight: bold;
+  font-size: 15px;
+  
+}
+.header{
+  height: 55vh;
+  background-color: rgba(241, 11, 61, 0.822);
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 40% auto;
+  place-items: center;
+  text-align: center;
+}
 .logo{
   color: red;
+}
+.app__virus{
+  height: 300px;
+  width: 1000px;
 }
 
 .app {
@@ -98,16 +140,49 @@ code {
 .table td {
   padding: 0.5rem;
 }
-.app__barGraph{
-  margin-top: 50px;
-}
 .chart_title{
   text-align: center;
   color: black;
 }
 
+.app__bar{
+ display: grid;
+ grid-template-columns: 50% auto;
+ place-items: center;
+  margin-top: 40px;
+}
+
 @media (max-width: 990px) {
   .app {
     flex-direction: column;
+  }
+  .header{
+    height: 55vh;
+    grid-template-columns: 100%;
+    place-items: center;
+  }
+  .virus__title{
+    color:white;
+    /* text-align: center; */
+    /* margin-bottom: 30px;
+    margin-left: 5rem; */
+  }
+  .virus__p{
+    color: white;
+    /* margin-left: 20px;
+    margin-bottom: 20px; */
+  }
+  .donate__btn{
+    margin-bottom: 30px;
+  }
+  .virus{
+    height: 150px;
+    width: 200px;
+  }
+  .logo{
+    font-size: 20px;
+  }
+  .chart_title{
+    font-size: 20px;
   }
 }

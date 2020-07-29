@@ -8,7 +8,7 @@ import {sortedData} from "./utils";
 import 'leaflet/dist/leaflet.css';
 import {beautyPrint} from './utils';
 import PieChart from './PieChart';
-
+import virus from './virus.jpg';
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
 function App() {
@@ -72,72 +72,88 @@ function App() {
         getCountriesData();
     }, []);
     return (
-        <div className="app">
-            <div className="app__left">
-                <div className="app__header">
-                    <h1 className='logo'>Covid-19 Tracker</h1>
-                    <FormControl className="app__dropdown">
-                        <Select variant="outlined" value={country} onChange={changeHandle}>
-                            <MenuItem value={"worldwide"}>WorldWide</MenuItem>
-                            {
-                                countries.map(
-                                    (country) => (<MenuItem value={country.value}>{country.name}</MenuItem>)
-                                )
-                            }
-                        </Select>
-                    </FormControl>
+        <div className='container'>
+            <div className="header">
+                <div className='virus__content'>
+                    <h1 className="virus__title">Check out current country and global data on COVID19.</h1>
+                    <p className="virus__p">Donate to WHO and be a part of the change</p>
+                    <a
+                        href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate"
+                        target="_blank">
+                        <button className="donate__btn">
+                            <i class="fas fa-briefcase-medical"></i> Donate</button>
+                    </a>
                 </div>
-                <div className="app__infoCard">
-                    <InfoCard
-                        isRed
-                        active={caseType === 'cases'}
-                        onClick={e => setCaseType('cases')}
-                        title="Corona Cases"
-                        cases={beautyPrint(countryInfo.todayCases)}
-                        total={beautyPrint(countryInfo.cases)}/>
-                    <InfoCard
-                        active={caseType === 'recovered'}
-                        onClick={e => setCaseType('recovered')}
-                        title="Recovered"
-                        cases={beautyPrint(countryInfo.todayRecovered)}
-                        total={beautyPrint(countryInfo.recovered)}/>
-                    <InfoCard
-                        isRed
-                        active={caseType === 'deaths'}
-                        onClick={e => setCaseType('deaths')}
-                        title="Death"
-                        cases={beautyPrint(countryInfo.todayDeaths)}
-                        total={beautyPrint(countryInfo.deaths)}/>
-                </div>
-                <Map
-                
-                    caseType={caseType}
-                    center={mapCenter}
-                    zoom={mapZoom}
-                    countries={mapCountries}/>
-                    <div className="app__barGraph">
-                      <h1 className="chart_title">Data visualiztion of Cases and Recovered by bar graph</h1>
-                    <PieChart countries={pieData}/>
+                <img className="virus" src={virus} alt="image of virus"/>
+
+            </div>
+            <div className="app">
+                <div className="app__left">
+                    <div className="app__header">
+                        <h1 className='logo'>Covid-19 Tracker</h1>
+                        <FormControl className="app__dropdown">
+                            <Select variant="outlined" value={country} onChange={changeHandle}>
+                                <MenuItem value={"worldwide"}>WorldWide</MenuItem>
+                                {
+                                    countries.map(
+                                        (country) => (<MenuItem value={country.value}>{country.name}</MenuItem>)
+                                    )
+                                }
+                            </Select>
+                        </FormControl>
                     </div>
+                    <div className="app__infoCard">
+                        <InfoCard
+                            isRed="isRed"
+                            icon={(<i class="fas fa-skull-crossbones"></i>)}
+                            active={caseType === 'cases'}
+                            onClick={e => setCaseType('cases')}
+                            title="Corona Cases"
+                            cases={beautyPrint(countryInfo.todayCases)}
+                            total={beautyPrint(countryInfo.cases)}/>
+                        <InfoCard
+                            icon={(<i class="fas fa-lungs-virus"></i>)}
+                            active={caseType === 'recovered'}
+                            onClick={e => setCaseType('recovered')}
+                            title="Recovered"
+                            cases={beautyPrint(countryInfo.todayRecovered)}
+                            total={beautyPrint(countryInfo.recovered)}/>
+                        <InfoCard
+                            icon ={(<i class="fas fa-virus-slash"></i>)}
+                            isRed="isRed"
+                            active={caseType === 'deaths'}
+                            onClick={e => setCaseType('deaths')}
+                            title="Death"
+                            cases={beautyPrint(countryInfo.todayDeaths)}
+                            total={beautyPrint(countryInfo.deaths)}/>
+                    </div>
+                    <Map
+                        caseType={caseType}
+                        center={mapCenter}
+                        zoom={mapZoom}
+                        countries={mapCountries}/>
+                    <div className="app__barGraph"></div>
 
+                </div>
+                <div className="app__right">
+                    <Card className="app_section">
+                        <CardContent>
+                            <h3>Live Corona Stats By country</h3>
+                            <Table countries={tableData}/>
+                            <h3 className='graph_title'>Whole World new {caseType}</h3>
+                            <LineGraph className="app__graph" caseType={caseType}/>
+                        </CardContent>
+                    </Card>
+                </div>
 
             </div>
-            <div className="app__right">
-                <Card className="app_section">
-                    <CardContent>
-                        <h3>Live Corona Stats By country</h3>
-                        <Table countries={tableData}/>
-                        <h3 className='graph_title'>Whole World new {caseType}</h3>
-                        <LineGraph className="app__graph" caseType={caseType}/>
-                    </CardContent>
-                </Card>
-            </div>
-            <div className="outside">
-             
-            </div>
-            
+                
+                    <PieChart countries={pieData}/>
+                    
+           
+
         </div>
-        
+
     );
 }
 

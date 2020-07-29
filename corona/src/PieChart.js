@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { Bar } from "react-chartjs-2";
 import numeral from 'numeral';
-
+import {Card, CardContent} from "@material-ui/core";
+import './bar.css';
 // const options = {
 //     legend: {
 //       display: false,
@@ -19,7 +20,9 @@ function PieChart({ countries }) {
     let recovered = countries.recovered;
     let cases = countries.cases;
     return (
-        <div>
+
+        <Card className="bar">
+          <h2 className="chart_title">Data visualiztion of Cases and Recovered by bar graph</h2>
            {
         <Bar
           data={{
@@ -34,7 +37,7 @@ function PieChart({ countries }) {
           }}
         />
       }
-        </div>
+        </Card>
     )
 }
 

@@ -1,0 +1,10 @@
+.bar{
+    margin-top: 50px;
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
