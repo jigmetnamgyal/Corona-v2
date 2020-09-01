@@ -9,7 +9,7 @@ import 'leaflet/dist/leaflet.css';
 import {beautyPrint} from './utils';
 import PieChart from './PieChart';
 import virus from './virus.jpg';
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
 
 function App() {
     const [countries, setCountries] = useState([]);
@@ -29,7 +29,7 @@ function App() {
             ? "https://disease.sh/v3/covid-19/all"
             : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
 
-        await fetch(proxyurl + url)
+        await fetch(url)
             .then((response) => response.json())
             .then((data) => {
                 setCountryInfo(data);
@@ -41,7 +41,7 @@ function App() {
     useEffect(() => {
         const countryData = async () => {
             await fetch(
-                proxyurl + "https://disease.sh/v3/covid-19/all"
+                "https://disease.sh/v3/covid-19/all"
             )
                 .then((response) => response.json())
                 .then((data) => {
@@ -54,7 +54,7 @@ function App() {
     useEffect(() => {
         const getCountriesData = async () => {
             await fetch(
-                proxyurl + "https://disease.sh/v3/covid-19/countries"
+                "https://disease.sh/v3/covid-19/countries"
             )
                 .then((response) => response.json())
                 .then((data) => {

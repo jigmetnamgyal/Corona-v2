@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import numeral from "numeral";
 
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
 const options = {
     legend: {
       display: false,
@@ -71,7 +70,7 @@ function LineGraph({ caseType = "cases" }, ...props) {
 
   useEffect(() => {
     const fetchHistoryData = async () => {
-      await fetch(proxyurl + "https://disease.sh/v3/covid-19/historical/all?lastdays=120")
+      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
         .then((response) => response.json())
         .then((data) => {
           let chartData = buildChartData(data, caseType);
