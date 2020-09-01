@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { Bar } from "react-chartjs-2";
-import numeral from 'numeral';
-import {Card, CardContent} from "@material-ui/core";
+import {Card} from "@material-ui/core";
 import './bar.css';
+
 // const options = {
 //     legend: {
 //       display: false,
